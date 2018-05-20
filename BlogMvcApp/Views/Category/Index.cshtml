@@ -6,6 +6,17 @@
 
 <h2>Kategori Listesi</h2>
 <hr />
+
+@if (TempData["Kategori"] != null)
+{
+    var kategori = (BlogMvcApp.Models.Category)TempData["Kategori"];
+
+    <div class="alert alert-success">
+        <span class="glyphicon glyphicon-ok"></span>
+        <b>@kategori.KategoriAdi</b> Kayıt Edildi.
+    </div>
+}
+
 <p>
     @Html.ActionLink("Kategori Ekle", "Create",null,new { @class="btn btn-primary" })
 </p>

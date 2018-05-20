@@ -14,17 +14,18 @@ namespace BlogMvcApp.Controllers
         public ActionResult Index()
         {
             var bloglar = context.Bloglar
+                .Where(i => i.Onay == true && i.Anasayfa == true)
                 .Select(i => new BlogModel()
                 {
                     Id = i.Id,
                     Baslik = i.Baslik.Length > 100 ? i.Baslik.Substring(0, 100) + "..." : i.Baslik,
                     Aciklama = i.Aciklama,
                     EklenmeTarihi = i.EklenmeTarihi,
-                    Anasayfa=i.Anasayfa,
-                    Onay=i.Onay,
-                    Resim=i.Resim
-                })
-                .Where(i => i.Onay == true && i.Anasayfa == true);
+                    Anasayfa = i.Anasayfa,
+                    Onay = i.Onay,
+                    Resim = i.Resim
+                });
+                
             return View(bloglar.ToList());
         }
     }
